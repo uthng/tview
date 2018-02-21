@@ -83,6 +83,18 @@ func (f *Flex) AddItem(item Primitive, fixedSize, proportion int, focus bool) *F
 	return f
 }
 
+// RemoveItem remove a given item from item list
+func (f *Flex) RemoveItem(item Primitive) *Flex {
+        for idx, it := range f.items {
+		if it.Item == item {
+			f.items = append(f.items[:idx], f.items[idx+1:]...)
+			break
+		}
+	}
+
+	return f
+}
+
 // Draw draws this primitive onto the screen.
 func (f *Flex) Draw(screen tcell.Screen) {
 	f.Box.Draw(screen)
